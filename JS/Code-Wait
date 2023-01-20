@@ -1,0 +1,15 @@
+
+var prResponse (this variable should be global so that we can call form outside)
+function start
+========================
+const promise = new Promise((resolve, reject) => {
+      prResponse = resolve
+    });
+    const res = await promise;
+    if (res == 'reject') {
+      console.log('promise rejected, going outside')
+      return
+    }
+========================
+    // rest code
+    function end======
