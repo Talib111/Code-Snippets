@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>My Files</title>
+  </head>
+  <body>
+    <h1>My Files</h1>
+    <div id="file-list"></div>
+    <script>
+  // Replace "YOUR_USERNAME" and "YOUR_REPO" with your own GitHub username and repository name
+  const url = `https://api.github.com/repos/Talib111/Code-Snippets/contents`;
+
+  // Use the Fetch API to retrieve a list of files from the GitHub API
+  fetch(url)
+    .then(response => response.json())
+    .then(data => {
+      // Get the file-list element from the HTML
+      const fileList = document.getElementById("file-list");
+
+      // Iterate over the list of files
+      data.forEach(file => {
+        // Create a new list item for each file
+        const li = document.createElement("li");
+        const a = document.createElement("a");
+        a.href = file.html_url;
+        a.innerText = file.name;
+        li.appendChild(a);
+        fileList.appendChild(li);
+      });
+    });
+</script>
+  </body>
+</html>
+
