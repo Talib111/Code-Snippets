@@ -1,0 +1,35 @@
+// 1 CREATE CUSTOM HOOK TO CREATE STATES AND UPDATE FUNCTION AND RETURN BOTH STATES AND UPDATE FUNCTION
+import { useState, useRef } from 'react';
+
+function UseInputCondition() {
+    const [inputConditionState, setinputConditionState] = useState();
+
+
+    function updateConditions(inputName, readOnly) {
+        // do something to update the state on subsequent calls to the hook
+        let style
+        if (readOnly) {
+            style = 'bg-yellow-200'
+        }
+        if (!readOnly) {
+            style = 'bg-blue-200'
+        }
+        setinputConditionState(
+            {
+                ...inputConditionState,
+                [inputName]: { readOnly: readOnly, style: style }
+            }
+        )
+        return { inputConditionState, setinputConditionState };
+
+    }
+
+    return { inputConditionState, setinputConditionState, updateConditions };
+}
+
+export default UseInputCondition
+
+// 2 CALL HOOK INITIALLY TO CREATE
+const { inputConditionState, updateConditions } = UseInputCondition()
+// 3 CALL UPDATE FUNCTION EVERYTIME WHEN NEEDS TO UPDATE
+  updateConditions('uptoDate', true)
